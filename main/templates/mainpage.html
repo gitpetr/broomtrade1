@@ -1,0 +1,26 @@
+{% extends "main.html" %}
+{% load staticfiles %}
+{% load thumbnail %}
+{% block title %}Главная страница{% endblock %}
+{% block back-photo %}
+    <div   style="float:left; width: 50%; height: 500px;  background-image: url({% static "img/tauer.jpg" %}); background-size: cover;">&nbsp;</div>
+    <div   style="float:right; width: 50%; height: 500px;  background-image: url({% static "img/sshool.jpg" %}); background-size: cover;">&nbsp;</div>
+<div style="clear: both;"></div>
+{% endblock %}
+
+
+{% block main %}
+
+    <div   style="width: 40%;float: left; background-image: url({% static "img/ph.png" %});background-size: cover;">
+  <h3>Статьи</h3>
+  {% for object in news %}
+    <h4><a href="{% url "news_detail" pk=object.pk %}">{{ object.title }}</a></h4>
+    <p>{{ object.description}}</p>
+    <p class="posted">{{ object.posted|date:"j.m.Y H:i:s" }}</p>
+  {% endfor %}
+    </div>
+
+    <div   style="width: 60%;height: 1000px; background-image: url({% static "img/vb.jpg" %});background-size: cover;float: right">&nbsp;</div>
+    <div style="clear: both;"></div>
+
+{% endblock %}
